@@ -3,10 +3,13 @@ var router = express.Router();
 var account_controller = require('../contollers/account-controller');
 var transaction_controller = require('../contollers/transacton-controller');
 
+const { body,validationResult } = require('express-validator');
+var Customer = require('../models/customer');
+
 /// Customer Routes  ///
 
 // GET request for creating customer. NOTE This must come before route for id (i.e. display customer).
-router.get('/create', account_controller.customer_create_get);
+router.get('/create', account_controller.customer_create_get);  
 
 // POST request for creating customer.
 router.post('/create', account_controller.customer_create_post);
@@ -28,6 +31,12 @@ router.get('/:id', account_controller.customer_detail);
 
 // GET request for list of all customer.
 router.get('/', account_controller.customer_list);
+
+// GET request for login page.
+router.get('/login', account_controller.customer_login);
+
+// Post request for login page.
+router.post('/login', account_controller.customer_login_post);
 
 ///  transaction routes ///
  

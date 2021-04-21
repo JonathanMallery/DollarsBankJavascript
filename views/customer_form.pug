@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 DOLLARSBANK ATM Welcomes You!!!
+  h2=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name:
+      input#first_name.form-control(type='text' placeholder='First name' name='first_name' required='true' value=(undefined===customer ? '' : customer.first_name) )
+      label(for='last_name') Last Name:
+      input#last_name.form-control(type='text' placeholder='Last name' name='last_name' required='true' value=(undefined===customer ? '' : customer.customer_name))
+    div.form-group
+      label(for='pin') Pin:
+      input#pin.form-control(type='number' name='pin' value=(undefined===customer ? '' : customer.pin) )
+      label(for='balance') Inital Deposit:
+      input#balance.form-control(type='number' name='balance' value=(undefined===customer ? '' : customer.balance) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
