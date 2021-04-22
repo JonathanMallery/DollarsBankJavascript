@@ -1,5 +1,6 @@
 var Customer = require('../models/customer');
 const { body,validationResult } = require('express-validator');
+const { db } = require('../models/customer');
 
 // Display list of all customers.
 exports.customer_list = function(req, res) {
@@ -22,10 +23,25 @@ exports.customer_login_post = function(req, res) {
 };
 
 // Display customer create form on GET.
-exports.customer_create_get = function(req, res) {
-    res.render('customer_form', { title: 'Create Account'});
-};
-
+exports.customer_create_get = [(req, res, next) => {
+    // res.render('customer_form', { title: 'Create Account'});
+        if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/errors messages.
+            res.render('login_form', { title: 'Create Account', customer: req.body, errors: errors.array() });
+            return;
+        } else {
+            db.open(function(err, db){
+                if(!err){
+                    db.collection('Collection0', function(err,collection) {
+                        if (!err) {
+                            collection.find({
+                                'first_name': first_name,
+                                'last_name': last_name,
+                                'pin': pin
+                            })}})
+                        }
+                    })}}
+];
 // Handle customer create on POST.
 exports.customer_create_post = [
 
