@@ -38,6 +38,8 @@ router.get('/customer/login', account_controller.customer_login);
 // Post request for login page.
 router.post('/customer/login', account_controller.customer_login_post);
 
+router.get('/account', account_controller.account_options);
+
 ///  transaction routes ///
  
 // GET request for creating transaction. NOTE This must come before route for id (i.e. display transaction).
@@ -57,5 +59,7 @@ router.get('/:id/transaction/:id', transaction_controller.transaction_detail);
 
 // GET request for list of all transactions.
 router.get('/alltransactions', transaction_controller.transaction_list);
+
+
 
 module.exports = router;

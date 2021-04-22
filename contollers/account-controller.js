@@ -12,20 +12,20 @@ exports.customer_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: customer detail: ' + req.params.id);
 };
 
+exports.account_options = function(req, res) {
+    res.render('account_page', { title: 'Account Page for'});
+};
+
 // Display login page customer.
 exports.customer_login = function(req, res) {
     res.render('login_form', { title: 'Login to Account'});
 };
 
 // Display login customer.
-exports.customer_login_post = function(req, res) {
-    res.send('NOT IMPLEMENTED:' + req.params.id);;
-};
-
-// Display customer create form on GET.
-exports.customer_create_get = [(req, res, next) => {
-    // res.render('customer_form', { title: 'Create Account'});
-        if (!errors.isEmpty()) {
+exports.customer_login_post = [ (req, res, next) => {
+    // res.send('NOT IMPLEMENTED:' + req.params.id);;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
         // There are errors. Render form again with sanitized values/errors messages.
             res.render('login_form', { title: 'Create Account', customer: req.body, errors: errors.array() });
             return;
@@ -42,6 +42,12 @@ exports.customer_create_get = [(req, res, next) => {
                         }
                     })}}
 ];
+
+// Display customer create form on GET.
+exports.customer_create_get = function(req, res,) {
+    res.render('customer_form', { title: 'Create Account'});
+}
+       
 // Handle customer create on POST.
 exports.customer_create_post = [
 
