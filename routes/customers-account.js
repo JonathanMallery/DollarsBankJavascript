@@ -33,7 +33,7 @@ router.get('/:id', account_controller.customer_detail);
 router.get('/', account_controller.customer_list);
 
 // GET request for login page.
-router.get('/login', account_controller.customer_login);
+router.get('/customer/login', account_controller.customer_login);
 
 // Post request for login page.
 router.post('/login', account_controller.customer_login_post);

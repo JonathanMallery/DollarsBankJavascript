@@ -11,12 +11,12 @@ exports.customer_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: customer detail: ' + req.params.id);
 };
 
-// Display detail page for a specific customer.
+// Display login page customer.
 exports.customer_login = function(req, res) {
     res.render('login_form', { title: 'Login to Account'});
 };
 
-// Display detail page for a specific customer.
+// Display login customer.
 exports.customer_login_post = function(req, res) {
     res.send('NOT IMPLEMENTED:' + req.params.id);;
 };
