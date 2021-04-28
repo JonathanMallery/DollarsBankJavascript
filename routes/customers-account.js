@@ -38,7 +38,7 @@ router.get('/customer/login', account_controller.customer_login);
 // Post request for login page.
 router.post('/customer/login', account_controller.customer_login_post);
 
-router.get('/account', account_controller.account_options);
+router.get('/customer/account', account_controller.account_options);
 
 ///  transaction routes ///
  
