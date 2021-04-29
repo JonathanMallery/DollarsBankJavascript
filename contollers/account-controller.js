@@ -1,6 +1,10 @@
-var Customer = require('../models/customer');
+// var Customer = require('../models/customer');
 const { body,validationResult } = require('express-validator');
 const { db } = require('../models/customer');
+import Customer from "../models/jscustomer";
+import Accounts from "../models/accounts";
+
+const accounts = new Accounts();
 
 // Display list of all customers.
 exports.customer_list = function(req, res) {
@@ -71,21 +75,45 @@ exports.customer_create_post = [
             return;
         }
         else {
-            // Data from form is valid.
+            // // Data from form is valid.
 
-            // Create an Author object with escaped and trimmed data.
-            var customer = new Customer(
-                {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    pin: req.body.pin,
-                    balance: req.body.balance
+            // // Create an Author object with escaped and trimmed data.
+            // var customer = new Customer(
+            //     {
+            //         first_name: req.body.first_name,
+            //         last_name: req.body.last_name,
+            //         pin: req.body.pin,
+            //         balance: req.body.balance
+            //     });
+            // customer.save(function (err) {
+            //     if (err) { return next(err); }
+            //     // Successful - redirect to new customer record.
+            //     res.redirect(customer.url);
+            // });
+
+            const createAccountForm = document.getElementById("CreateAccount");
+                createAccountForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+
+                    const first = document.getElementById("first").value.trim();
+                    const last = document.getElementById("last").value.trim();
+                    const pin = document.getElementById("pin").value.trim();
+                    const balance = document.getElementById("balance").value.trim();
+
+                    const cust = new Customer();
+                    cust.setFirstname(first);
+                    cust.setLastname(last);
+                    cust.setPin(pin);
+                    cust.setBalance(balance);
+
+                    accounts.addCustomerToAccounts(cust);
+
+                    localStorage.setItem("myAccounts", JSON.stringify(accounts.getAccounts));
+                    res.render('customer_form', { title: 'Create Account'});
+
                 });
-            customer.save(function (err) {
-                if (err) { return next(err); }
-                // Successful - redirect to new author record.
-                res.redirect(customer.url);
-            });
+
+                
         }
     }
 ];

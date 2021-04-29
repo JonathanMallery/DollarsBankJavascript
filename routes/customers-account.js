@@ -4,7 +4,8 @@ var account_controller = require('../contollers/account-controller');
 var transaction_controller = require('../contollers/transacton-controller');
 
 const { body,validationResult } = require('express-validator');
-var Customer = require('../models/customer');
+// var Customer = require('../models/customer');
+import Customer from "../models/jscustomer";
 
 /// Customer Routes  ///
 
